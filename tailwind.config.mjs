@@ -11,6 +11,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        sans: ['Google Sans', 'sans-serif'],
+      },
     },
   },
   plugins: [],

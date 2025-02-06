@@ -1,7 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@800&family=Libre+Franklin:wght@400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: 'Libre Franklin', sans-serif;
+  color: var(--foreground);
+  background: var(--background);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Big Shoulders Text', sans-serif;
+  font-weight: 800;
+}
+
+/* Tema Chiaro e Scuro */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -14,8 +28,38 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Animazioni */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 1.5s ease-out forwards;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1.5s ease-out forwards;
+}
+
+/* Classe per aggiungere un ritardo all'animazione */
+.animation-delay-500 {
+  animation-delay: 0.5s;
 }
