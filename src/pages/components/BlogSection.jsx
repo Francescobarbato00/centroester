@@ -130,7 +130,7 @@ const BlogSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-4 text-lg text-gray-600"
         >
-          Leggi gli ultimi aggiornamenti, consigli e articoli dedicati al mondo dello sport.
+          Leggi gli ultimi aggiornamenti, consigli e articoli dedicati al mondo dello sport e non solo.
         </motion.p>
 
         {/* Menu Filtro */}
@@ -204,7 +204,7 @@ const BlogSection = () => {
                     <div className="mt-4 flex justify-between items-center">
                       <span className="text-sm text-gray-500">{post.date}</span>
                       <button className="text-blue-600 font-bold hover:text-blue-800 transition-colors duration-300">
-                        Leggi di più
+                        Leggi di più!
                       </button>
                     </div>
                   </div>
