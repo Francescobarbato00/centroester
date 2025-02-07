@@ -6,10 +6,15 @@ const SearchOverlay = ({ isOpen, onClose }) => {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    // Al momento dell'apertura, focalizza automaticamente l'input
-    if (isOpen && inputRef.current) {
-      inputRef.current.focus();
+    if (isOpen) {
+      // Blocca lo scroll del sito
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
     }
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
   return (
@@ -39,7 +44,7 @@ const SearchOverlay = ({ isOpen, onClose }) => {
               ref={inputRef}
               type="text"
               placeholder="Inserisci la tua ricerca..."
-              className="w-full border border-gray-300 p-4 text-2xl focus:outline-none focus:border-blue-600"
+              className="w-full border border-gray-300 p-4 text-2xl text-black focus:outline-none focus:border-blue-600"
             />
           </form>
         </motion.div>

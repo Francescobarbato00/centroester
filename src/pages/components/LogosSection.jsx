@@ -9,12 +9,28 @@ const logos = letters.map((letter) => ({
   link: "#",
 }));
 
-const ITEMS_VISIBLE = 8; // Numero massimo di loghi visibili
-const INTERVAL = 3000;   // Tempo tra una transizione e l'altra (ms)
+const INTERVAL = 3000; // Tempo tra una transizione e l'altra (ms)
 
 const Sponsors = () => {
   const [startIndex, setStartIndex] = useState(0);
+  const [itemsVisible, setItemsVisible] = useState(8);
 
+  // Aggiorna il numero di loghi visibili in base alla larghezza della finestra
+  useEffect(() => {
+    const updateItemsVisible = () => {
+      if (window.innerWidth < 768) {
+        setItemsVisible(2);
+      } else {
+        setItemsVisible(8);
+      }
+    };
+
+    updateItemsVisible();
+    window.addEventListener("resize", updateItemsVisible);
+    return () => window.removeEventListener("resize", updateItemsVisible);
+  }, []);
+
+  // Aggiornamento automatico dell'indice dei loghi
   useEffect(() => {
     const interval = setInterval(() => {
       setStartIndex((prev) => (prev + 1) % logos.length);
@@ -23,8 +39,8 @@ const Sponsors = () => {
   }, []);
 
   const visibleLogos = [
-    ...logos.slice(startIndex, startIndex + ITEMS_VISIBLE),
-    ...logos.slice(0, Math.max(0, startIndex + ITEMS_VISIBLE - logos.length)),
+    ...logos.slice(startIndex, startIndex + itemsVisible),
+    ...logos.slice(0, Math.max(0, startIndex + itemsVisible - logos.length)),
   ];
 
   return (
@@ -38,7 +54,7 @@ const Sponsors = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="text-4xl md:text-5xl font-bold uppercase"
+        className="text-4xl md:text-5xl font-bold uppercase text-black"
       >
         I NOSTRI <span className="text-blue-600">SPONSOR</span>
       </motion.h1>

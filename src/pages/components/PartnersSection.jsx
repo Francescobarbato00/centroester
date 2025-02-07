@@ -34,8 +34,8 @@ const PartnersSection = () => {
   return (
     <div className="bg-white py-12 border-t border-gray-200 flex justify-center items-center shadow-none md:shadow-lg md:shadow-gray-300">
       <div className="max-w-6xl w-full px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-        <h2 className="text-xl font-semibold whitespace-nowrap text-center md:text-left">
-          I Nostri Partner :
+        <h2 className="text-xl font-semibold whitespace-nowrap text-center md:text-left text-black">
+          I Nostri Partner:
         </h2>
         <div className="flex flex-wrap items-center justify-center gap-6">
           {currentLogos.map((logo, idx) => (
@@ -43,9 +43,9 @@ const PartnersSection = () => {
               key={idx}
               src={logo}
               alt={`Partner Logo ${idx + 1}`}
-              width={120}
-              height={60}
-              className="grayscale hover:grayscale-0 transition-all duration-500 w-[120px] h-[60px] object-contain"
+              width={80}
+              height={40}
+              className="grayscale hover:grayscale-0 transition-all duration-500 w-[80px] h-[40px] md:w-[120px] md:h-[60px] object-contain"
             />
           ))}
         </div>

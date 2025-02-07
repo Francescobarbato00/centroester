@@ -136,7 +136,7 @@ const BlogSection = () => {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-4xl font-bold text-gray-900"
+          className="text-4xl font-bold text-black"
         >
           IL NOSTRO <span className="text-blue-600">BLOG</span>
         </motion.h2>
@@ -146,7 +146,8 @@ const BlogSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-4 text-lg text-gray-600"
         >
-          Leggi gli ultimi aggiornamenti, consigli e articoli dedicati al mondo dello sport e non solo.
+          Leggi gli ultimi aggiornamenti, consigli e articoli dedicati al mondo
+          dello sport e non solo.
         </motion.p>
 
         {/* Menu Filtro */}
@@ -154,7 +155,9 @@ const BlogSection = () => {
           <button
             onClick={() => handleFilterChange("tutti")}
             className={`px-4 py-2 border rounded ${
-              filter === "tutti" ? "bg-blue-600 text-white" : "bg-white text-gray-600"
+              filter === "tutti"
+                ? "bg-blue-600 text-white"
+                : "bg-white text-gray-600"
             }`}
           >
             Tutti
@@ -162,7 +165,9 @@ const BlogSection = () => {
           <button
             onClick={() => handleFilterChange("data")}
             className={`px-4 py-2 border rounded ${
-              filter === "data" ? "bg-blue-600 text-white" : "bg-white text-gray-600"
+              filter === "data"
+                ? "bg-blue-600 text-white"
+                : "bg-white text-gray-600"
             }`}
           >
             Data
@@ -170,7 +175,9 @@ const BlogSection = () => {
           <button
             onClick={() => handleFilterChange("titolo")}
             className={`px-4 py-2 border rounded ${
-              filter === "titolo" ? "bg-blue-600 text-white" : "bg-white text-gray-600"
+              filter === "titolo"
+                ? "bg-blue-600 text-white"
+                : "bg-white text-gray-600"
             }`}
           >
             Titolo
@@ -178,7 +185,9 @@ const BlogSection = () => {
           <button
             onClick={() => handleFilterChange("categoria")}
             className={`px-4 py-2 border rounded ${
-              filter === "categoria" ? "bg-blue-600 text-white" : "bg-white text-gray-600"
+              filter === "categoria"
+                ? "bg-blue-600 text-white"
+                : "bg-white text-gray-600"
             }`}
           >
             Categoria
@@ -215,7 +224,10 @@ const BlogSection = () => {
                     <span className="text-xs font-bold text-blue-600 uppercase">
                       {post.category}
                     </span>
-                    <h3 className="text-xl font-semibold mt-2">{post.title}</h3>
+                    {/* Titolo del post: impostato in nero */}
+                    <h3 className="text-xl font-semibold mt-2 text-black">
+                      {post.title}
+                    </h3>
                     <p className="mt-2 text-gray-600">{post.description}</p>
                     <div className="mt-4 flex justify-between items-center">
                       <span className="text-sm text-gray-500">{post.date}</span>
@@ -229,7 +241,7 @@ const BlogSection = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* Frecce di navigazione posizionate sotto */}
+          {/* Frecce di navigazione */}
           {pageCount > 1 && (
             <div className="flex justify-center items-center mt-6 space-x-3">
               <button

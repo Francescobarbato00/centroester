@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, MessageSquare } from "lucide-react";
 
@@ -9,22 +9,33 @@ const Chatbot = () => {
       id: 1,
       text: "Ciao! Come posso aiutarti oggi?",
       sender: "bot",
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
     },
   ]);
   const [inputValue, setInputValue] = useState("");
 
   const toggleChat = () => setIsOpen((prev) => !prev);
 
+  // Blocca lo scrolling della pagina quando il chatbot è aperto
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isOpen]);
+
   const handleSendMessage = (e) => {
     e.preventDefault();
     if (inputValue.trim() === "") return;
+
     const userMessage = {
       id: Date.now(),
       text: inputValue,
       sender: "user",
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
     };
+
     setChatMessages((prev) => [...prev, userMessage]);
     setInputValue("");
 
@@ -34,7 +45,7 @@ const Chatbot = () => {
         id: Date.now() + 1,
         text: "Grazie per averci contattato. Ti risponderemo al più presto.",
         sender: "bot",
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
       };
       setChatMessages((prev) => [...prev, botReply]);
     }, 1000);
@@ -50,7 +61,8 @@ const Chatbot = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
             transition={{ duration: 0.3 }}
-            className="bg-white w-80 h-96 rounded-lg shadow-lg flex flex-col overflow-hidden"
+            // Su mobile: full screen; su desktop: dimensioni ridotte con arrotondamenti
+            className="bg-white fixed top-0 left-0 w-full h-full md:static md:w-80 md:h-96 md:rounded-lg shadow-lg flex flex-col overflow-hidden"
           >
             {/* Header del chatbot */}
             <div className="bg-blue-600 p-4 flex items-center justify-between">

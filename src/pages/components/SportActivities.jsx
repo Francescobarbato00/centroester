@@ -1,5 +1,8 @@
 import React from "react";
-import { Trophy, Activity, Award, Droplet, TrendingUp, Music, Box, Star, Target, Bike, Heart } from "lucide-react";
+import { 
+  Trophy, Activity, Award, Droplet, TrendingUp, Music, 
+  Box, Star, Target, Bike, Heart 
+} from "lucide-react";
 
 const sports = [
   {
@@ -93,7 +96,7 @@ const SportActivities = () => {
     <section className="w-full py-20 bg-gray-100">
       <div className="max-w-6xl mx-auto px-6 text-center">
         {/* Titolo della sezione */}
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+        <h2 className="text-3xl md:text-4xl font-bold text-black">
           Scopri i Nostri <span className="text-blue-600">SPORT</span>
         </h2>
         <p className="mt-4 text-base md:text-lg text-gray-600">
@@ -114,7 +117,7 @@ const SportActivities = () => {
                 {sport.category}
               </p>
               {/* Titolo */}
-              <h3 className="text-xl md:text-2xl font-bold mt-1">
+              <h3 className="text-xl md:text-2xl font-bold mt-1 text-black">
                 {sport.title}
               </h3>
               {/* Descrizione */}
