@@ -32,7 +32,7 @@ const PartnersSection = () => {
   }, [index]);
 
   return (
-    <div className="bg-white py-12 border-t border-gray-200 flex justify-center items-center shadow-lg shadow-gray-300">
+    <div className="bg-white py-12 border-t border-gray-200 flex justify-center items-center shadow-none md:shadow-lg md:shadow-gray-300">
       <div className="max-w-6xl w-full px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <h2 className="text-xl font-semibold whitespace-nowrap text-center md:text-left">
           I Nostri Partner :
