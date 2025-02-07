@@ -3,11 +3,11 @@ import Image from "next/image";
 
 const AboutUsIntro = () => {
   return (
-    <section className="relative w-full bg-gradient-to-r from-blue-700 to-blue-400 py-20 text-center text-white">
+    <section className="relative w-full bg-gradient-to-r from-blue-700 to-blue-400 py-12 md:py-20 text-center text-white">
       {/* Immagine di sfondo con overlay */}
       <div className="absolute inset-0 w-full h-full">
         <Image
-          src="/aboutus-bg.jpg" // Sostituisci con il percorso corretto per l'immagine di background del Chi Siamo
+          src="/aboutus-bg.jpg" // Percorso corretto per l'immagine di background
           alt="Background Chi Siamo"
           layout="fill"
           objectFit="cover"
@@ -17,13 +17,13 @@ const AboutUsIntro = () => {
       
       {/* Contenuto Testuale */}
       <div className="relative z-10 px-4">
-        <h1 className="text-4xl md:text-5xl font-extrabold drop-shadow-lg">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold drop-shadow-lg">
           Chi Siamo
         </h1>
-        <p className="text-lg md:text-xl font-semibold mt-2 drop-shadow-md">
+        <p className="text-base sm:text-lg md:text-xl font-semibold mt-2 drop-shadow-md">
           La nostra storia, la nostra passione, il nostro impegno per il futuro.
         </p>
-        <p className="mt-4 max-w-3xl mx-auto drop-shadow-md">
+        <p className="mt-4 max-w-md sm:max-w-3xl mx-auto drop-shadow-md text-sm sm:text-base md:text-lg">
           Siamo un team dedicato a creare soluzioni innovative e a fare la differenza nella nostra comunità. La nostra missione è valorizzare i talenti, promuovere la cultura e offrire esperienze uniche. Scopri di più sulla nostra storia e sui valori che ci guidano.
         </p>
       </div>

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
+import { FaBars, FaTimes, FaChevronDown, FaSearch } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import SearchOverlay from "./SearchOverlay";
 
 const mobileMenuItems = [
   { name: "Home", path: "/" },
@@ -36,6 +37,7 @@ const mobileMenuItems = [
 const HeaderMobile = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState(null);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -44,6 +46,10 @@ const HeaderMobile = () => {
 
   const toggleSubmenu = (index) => {
     setActiveSubmenu(activeSubmenu === index ? null : index);
+  };
+
+  const toggleSearch = () => {
+    setSearchOpen((prev) => !prev);
   };
 
   return (
@@ -59,23 +65,34 @@ const HeaderMobile = () => {
             className="cursor-pointer"
           />
         </Link>
-        <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
-          <FaBars size={24} />
-        </button>
+        <div className="flex space-x-4">
+          {/* Bottone per aprire la ricerca */}
+          <button onClick={toggleSearch} className="text-gray-700 focus:outline-none">
+            <FaSearch size={24} />
+          </button>
+          {/* Bottone per aprire il menu */}
+          <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
+            <FaBars size={24} />
+          </button>
+        </div>
       </header>
 
-      {/* Menu mobile fisso e animato */}
+      {/* Search Overlay */}
+      <SearchOverlay isOpen={searchOpen} onClose={toggleSearch} />
+
+      {/* Menu mobile fisso, animato e scrollabile */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            key="mobileMenu"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.3 }}
-            className="fixed top-0 right-0 w-4/5 h-full bg-white shadow-lg z-50"
+            className="fixed top-0 right-0 w-4/5 h-full bg-white shadow-lg z-50 overflow-y-auto"
           >
             <div className="p-4 flex items-center justify-between border-b">
-              {/* Sostituisci la scritta "Menu" con il logo intero */}
+              {/* Logo intero */}
               <Link href="/" className="flex items-center">
                 <Image
                   src="/logointero.png" // Percorso del logo intero
