@@ -9,7 +9,7 @@ const blogPosts = [
       "Scopri come la tecnologia sta rivoluzionando il mondo dello sport, dai wearable alle analisi dei dati, rendendo l'allenamento più efficace e personalizzato.",
     category: "TECNOLOGIA",
     date: "10 Novembre 2022",
-    image: "/foto1.jpg", // Assicurati di avere questa immagine nella cartella public
+    image: "/foto1.jpg",
   },
   {
     title: "Nutrizione e Performance",
@@ -60,7 +60,7 @@ const blogPosts = [
     date: "20 Settembre 2022",
     image: "/foto6.jpg",
   },
-   {
+  {
     title: "Mindfulness e Sport",
     description:
       "Integrare la mindfulness nella tua routine sportiva può migliorare la concentrazione e ridurre lo stress. Leggi i consigli per trovare l'equilibrio perfetto tra mente e corpo.",
@@ -68,8 +68,6 @@ const blogPosts = [
     date: "20 Settembre 2022",
     image: "/foto6.jpg",
   },
-
-
 ];
 
 const variants = {
@@ -187,7 +185,7 @@ const BlogSection = () => {
           </button>
         </div>
 
-        {/* Carousel degli articoli con effetto di trascinamento su frecce */}
+        {/* Carousel degli articoli */}
         <div className="relative mt-10">
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
@@ -231,22 +229,36 @@ const BlogSection = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* Frecce di navigazione */}
+          {/* Frecce di navigazione posizionate sotto */}
           {pageCount > 1 && (
-            <>
+            <div className="flex justify-center items-center mt-6 space-x-3">
               <button
                 onClick={handlePrev}
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
+                className="p-2 bg-white rounded-full hover:bg-gray-100 transition"
               >
                 <ChevronLeft size={24} className="text-blue-600" />
               </button>
+              <div className="flex space-x-2">
+                {Array.from({ length: pageCount }).map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setDirection(idx > currentPage ? 1 : -1);
+                      setCurrentPage(idx);
+                    }}
+                    className={`w-3 h-3 rounded-full transition-colors ${
+                      currentPage === idx ? "bg-blue-600" : "bg-gray-300"
+                    }`}
+                  ></button>
+                ))}
+              </div>
               <button
                 onClick={handleNext}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
+                className="p-2 bg-white rounded-full hover:bg-gray-100 transition"
               >
                 <ChevronRight size={24} className="text-blue-600" />
               </button>
-            </>
+            </div>
           )}
         </div>
       </div>

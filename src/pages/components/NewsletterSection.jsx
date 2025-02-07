@@ -18,9 +18,9 @@ const NewsletterSection = () => {
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-start text-white">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center text-white">
         {/* Sezione testuale a sinistra */}
-        <div className="w-full md:w-8/12 mb-8 md:mb-0">
+        <div className="w-full md:w-8/12 mb-8 md:mb-0 text-center md:text-left">
           <h2 className="text-4xl font-bold mb-4">
             Iscriviti alla nostra newsletter
           </h2>
@@ -31,7 +31,7 @@ const NewsletterSection = () => {
 
         {/* Form di iscrizione a destra */}
         <div className="w-full md:w-3/12 ml-auto">
-          <form onSubmit={handleSubmit} className="flex flex-col items-start">
+          <form onSubmit={handleSubmit} className="flex flex-col items-center md:items-start">
             <input
               type="email"
               placeholder="Inserisci la tua email"

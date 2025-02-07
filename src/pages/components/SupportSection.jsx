@@ -11,8 +11,8 @@ const SupportSection = () => {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.8 }}
     >
-      <h2 className="text-4xl font-bold">Hai bisogno di aiuto?</h2>
-      <p className="text-gray-600 mt-2">
+      <h2 className="text-3xl md:text-4xl font-bold">Hai bisogno di aiuto?</h2>
+      <p className="text-gray-600 mt-2 text-sm md:text-base">
         Siamo qui per supportarti in ogni momento. Scegli il metodo più adatto a te.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
@@ -22,12 +22,12 @@ const SupportSection = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <MessageSquare size={48} className="text-blue-600" />
-          <h3 className="text-xl font-bold mt-4">Supporto Clienti</h3>
-          <p className="text-gray-600 mt-2">
+          <MessageSquare size={40} className="text-blue-600" />
+          <h3 className="text-lg md:text-xl font-bold mt-4">Supporto Clienti</h3>
+          <p className="text-gray-600 mt-2 text-sm md:text-base">
             Parla con un nostro operatore per assistenza immediata.
           </p>
-          <button className="mt-4 bg-blue-600 text-white px-6 py-2 rounded font-bold">
+          <button className="mt-4 bg-blue-600 text-white px-4 py-2 md:px-6 md:py-2 rounded font-bold text-sm md:text-base shadow-md hover:bg-blue-800 transition">
             Chatta ora
           </button>
         </motion.div>
@@ -37,12 +37,12 @@ const SupportSection = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <Mail size={48} className="text-blue-600" />
-          <h3 className="text-xl font-bold mt-4">Supporto Ticket</h3>
-          <p className="text-gray-600 mt-2">
+          <Mail size={40} className="text-blue-600" />
+          <h3 className="text-lg md:text-xl font-bold mt-4">Supporto Ticket</h3>
+          <p className="text-gray-600 mt-2 text-sm md:text-base">
             Apri un ticket per ricevere supporto dedicato dal nostro team.
           </p>
-          <button className="mt-4 bg-blue-600 text-white px-6 py-2 rounded font-bold">
+          <button className="mt-4 bg-blue-600 text-white px-4 py-2 md:px-6 md:py-2 rounded font-bold text-sm md:text-base shadow-md hover:bg-blue-800 transition">
             Invia Ticket
           </button>
         </motion.div>
@@ -52,12 +52,12 @@ const SupportSection = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <Users size={48} className="text-blue-600" />
-          <h3 className="text-xl font-bold mt-4">Forum della Community</h3>
-          <p className="text-gray-600 mt-2">
+          <Users size={40} className="text-blue-600" />
+          <h3 className="text-lg md:text-xl font-bold mt-4">Forum della Community</h3>
+          <p className="text-gray-600 mt-2 text-sm md:text-base">
             Unisciti alla nostra community e trova risposte alle tue domande.
           </p>
-          <button className="mt-4 bg-blue-600 text-white px-6 py-2 rounded font-bold">
+          <button className="mt-4 bg-blue-600 text-white px-4 py-2 md:px-6 md:py-2 rounded font-bold text-sm md:text-base shadow-md hover:bg-blue-800 transition">
             Registrati
           </button>
         </motion.div>

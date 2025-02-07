@@ -10,7 +10,7 @@ const logos = letters.map((letter) => ({
 }));
 
 const ITEMS_VISIBLE = 8; // Numero massimo di loghi visibili
-const INTERVAL = 3000; // Tempo tra una transizione e l'altra
+const INTERVAL = 3000;   // Tempo tra una transizione e l'altra (ms)
 
 const Sponsors = () => {
   const [startIndex, setStartIndex] = useState(0);
@@ -56,7 +56,7 @@ const Sponsors = () => {
           initial={{ x: "100%" }}
           animate={{ x: "0%" }}
           transition={{ duration: 1, ease: "easeInOut" }}
-          className="flex gap-6 justify-center items-center"
+          className="flex flex-wrap md:flex-nowrap gap-6 justify-center items-center"
         >
           {visibleLogos.map((logo) => (
             <motion.a

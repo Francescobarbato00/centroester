@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Search } from "lucide-react";
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
+import { motion } from "framer-motion"; // Assicurati che questo import sia presente
 import SearchOverlay from "./SearchOverlay"; // Assicurati che il path sia corretto
 
 // Definisci il sottomenu per DISCIPLINE
@@ -25,33 +26,34 @@ const disciplineSubmenu = [
   { name: "ACQUA FITNESS", path: "/discipline/acqua-fitness" },
 ];
 
+const menuItems = [
+  { name: "Home", path: "/" },
+  { name: "Chi siamo", path: "/us" },
+  { name: "Teatro", path: "/theater" },
+  { name: "News", path: "/news" },
+  { name: "DISCIPLINE", submenu: disciplineSubmenu },
+  { name: "Contatti", path: "/contact" },
+];
+
 const ScrollableHeader = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  // Stati per il dropdown "DISCIPLINE"
+  // Stati per il dropdown "DISCIPLINE" (desktop)
   const [isDisciplineOpen, setIsDisciplineOpen] = useState(false);
   const [isDisciplinePersistent, setIsDisciplinePersistent] = useState(false);
+  // Stato per il menu mobile
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleSearch = () => setIsSearchOpen((prev) => !prev);
-
-  // Voci di menu: il prop scroll={true} e un onClick che chiama window.scrollTo(0,0)
-  const menuItems = [
-    { name: "Home", path: "/" },
-    { name: "Chi siamo", path: "/us" },
-    { name: "Teatro", path: "/theater" },
-    { name: "News", path: "/news" },
-    { name: "DISCIPLINE", submenu: disciplineSubmenu },
-    { name: "Contatti", path: "/contact" },
-  ];
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <>
@@ -75,14 +77,13 @@ const ScrollableHeader = () => {
               />
             </Link>
           </div>
-
-          {/* Menu centrato */}
-          <nav className="flex-1 flex justify-center transition-all duration-500 ease-in-out">
+          {/* Desktop Menu */}
+          <nav className="hidden md:flex flex-1 justify-center transition-all duration-500 ease-in-out">
             <ul className="flex space-x-8 text-[15px] font-medium uppercase tracking-wide">
               {menuItems.map(({ name, path, submenu }, index) => (
                 <li
                   key={index}
-                  className="relative"
+                  className="relative group"
                   onMouseEnter={() => {
                     if (submenu) setIsDisciplineOpen(true);
                   }}
@@ -112,7 +113,13 @@ const ScrollableHeader = () => {
                               key={subIndex}
                               className="px-4 py-2 hover:bg-blue-100"
                             >
-                              <Link href={subitem.path} scroll={true} onClick={() => window.scrollTo(0, 0)}>
+                              <Link
+                                href={subitem.path}
+                                scroll={true}
+                                onClick={() => {
+                                  window.scrollTo(0, 0);
+                                }}
+                              >
                                 <span className="block text-sm text-blue-600">
                                   {subitem.name}
                                 </span>
@@ -123,7 +130,14 @@ const ScrollableHeader = () => {
                       )}
                     </>
                   ) : (
-                    <Link href={path} scroll={true} onClick={() => window.scrollTo(0, 0)} className="relative hover:text-blue-600 transition-colors duration-300">
+                    <Link
+                      href={path}
+                      scroll={true}
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                      }}
+                      className="relative hover:text-blue-600 transition-colors duration-300"
+                    >
                       {name}
                       <span className="absolute bottom-0 left-0 w-full h-[2px] bg-blue-600 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100 origin-center"></span>
                     </Link>
@@ -132,9 +146,17 @@ const ScrollableHeader = () => {
               ))}
             </ul>
           </nav>
-
-          {/* Icona di Ricerca */}
-          <div className="flex items-center">
+          {/* Mobile Menu Hamburger Icon */}
+          <div className="flex md:hidden items-center">
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
+            >
+              <FaBars size={24} />
+            </button>
+          </div>
+          {/* Search Icon */}
+          <div className="flex items-center ml-4">
             <button
               onClick={toggleSearch}
               className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
@@ -144,7 +166,67 @@ const ScrollableHeader = () => {
           </div>
         </div>
       </header>
-
+      {/* Mobile Menu - slide in from right */}
+      {isMobileMenuOpen && (
+        <motion.div
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "100%" }}
+          transition={{ duration: 0.5 }}
+          className="fixed top-0 right-0 w-4/5 h-full bg-white z-50 shadow-lg"
+        >
+          <div className="p-6 flex justify-between items-center border-b">
+            <h2 className="text-2xl font-bold">Menu</h2>
+            <button
+              onClick={closeMobileMenu}
+              className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
+            >
+              <FaTimes size={24} />
+            </button>
+          </div>
+          <ul className="p-6 space-y-4">
+            {menuItems.map(({ name, path, submenu }, index) => (
+              <li key={index}>
+                {submenu ? (
+                  <div>
+                    <span className="flex items-center justify-between text-lg font-medium text-blue-600">
+                      {name} <FaChevronDown />
+                    </span>
+                    <ul className="mt-2 ml-4 space-y-2">
+                      {submenu.map((subitem, subIndex) => (
+                        <li key={subIndex}>
+                          <Link
+                            href={subitem.path}
+                            scroll={true}
+                            onClick={() => {
+                              window.scrollTo(0, 0);
+                              closeMobileMenu();
+                            }}
+                          >
+                            <span className="text-gray-700">{subitem.name}</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <Link
+                    href={path}
+                    scroll={true}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                      closeMobileMenu();
+                    }}
+                    className="text-lg font-medium text-gray-700"
+                  >
+                    {name}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      )}
       {/* Componente SearchOverlay */}
       <SearchOverlay isOpen={isSearchOpen} onClose={toggleSearch} />
     </>

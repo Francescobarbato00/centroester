@@ -1,17 +1,5 @@
 import React from "react";
-import {
-  Trophy,
-  Activity,
-  Award,
-  Droplet,
-  TrendingUp,
-  Music,
-  Box,
-  Star,
-  Target,
-  Bike,
-  Heart,
-} from "lucide-react";
+import { Trophy, Activity, Award, Droplet, TrendingUp, Music, Box, Star, Target, Bike, Heart } from "lucide-react";
 
 const sports = [
   {
@@ -104,11 +92,11 @@ const SportActivities = () => {
   return (
     <section className="w-full py-20 bg-gray-100">
       <div className="max-w-6xl mx-auto px-6 text-center">
-        {/* Titolo */}
-        <h2 className="text-4xl font-bold text-gray-900">
+        {/* Titolo della sezione */}
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
           Scopri i Nostri <span className="text-blue-600">SPORT</span>
         </h2>
-        <p className="mt-4 text-lg text-gray-600">
+        <p className="mt-4 text-base md:text-lg text-gray-600">
           Offriamo una vasta gamma di attività sportive per tutte le età e livelli. Unisciti a noi!
         </p>
 
@@ -117,18 +105,22 @@ const SportActivities = () => {
           {sports.map((sport, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg p-6 text-left transform transition duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl"
+              className="bg-white rounded-xl shadow-lg p-6 text-center md:text-left transform transition duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl"
             >
               {/* Icona */}
               <div className="mb-4">{sport.icon}</div>
               {/* Categoria */}
-              <p className="text-xs font-bold text-gray-500 uppercase">{sport.category}</p>
+              <p className="text-xs font-bold text-gray-500 uppercase">
+                {sport.category}
+              </p>
               {/* Titolo */}
-              <h3 className="text-2xl font-bold mt-1">{sport.title}</h3>
+              <h3 className="text-xl md:text-2xl font-bold mt-1">
+                {sport.title}
+              </h3>
               {/* Descrizione */}
               <p className="mt-2 text-gray-600">{sport.description}</p>
               {/* Pulsante */}
-              <button className="mt-4 bg-blue-600 text-white font-bold py-2 px-4 rounded-md shadow-md hover:bg-blue-800 transition">
+              <button className="mt-4 bg-blue-600 text-white font-bold py-2 px-4 w-full md:w-auto rounded-md shadow-md hover:bg-blue-800 transition">
                 Scopri di più
               </button>
             </div>

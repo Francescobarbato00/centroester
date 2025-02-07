@@ -12,7 +12,7 @@ const SportSection = () => {
         transition={{ duration: 1 }}
       >
         {/* Contenuto Testuale */}
-        <div>
+        <div className="text-center md:text-left">
           <h4 className="text-blue-600 font-bold uppercase text-sm tracking-widest">
             Centro Ester
           </h4>
