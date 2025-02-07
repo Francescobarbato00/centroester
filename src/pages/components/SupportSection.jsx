@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MessageSquare, Mail, Users } from "lucide-react";
 import { motion } from "framer-motion";
 
 const SupportSection = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <motion.section
-      className="container mx-auto px-6 py-12 text-center"
+      className="container mx-auto px-6 py-12 text-center bg-white"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -18,7 +27,7 @@ const SupportSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
         <motion.div
           className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center"
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: isMobile ? 0 : -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
@@ -33,7 +42,7 @@ const SupportSection = () => {
         </motion.div>
         <motion.div
           className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center"
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ opacity: 0, x: isMobile ? 0 : 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
@@ -48,7 +57,7 @@ const SupportSection = () => {
         </motion.div>
         <motion.div
           className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center"
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: isMobile ? 0 : -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
