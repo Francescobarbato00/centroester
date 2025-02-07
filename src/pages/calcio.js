@@ -9,6 +9,7 @@ import CulturaSection from "./components/CulturaSection";
 import VisionMissionSection from "./components/VisionMissionSection";
 import SportsInfoSection from "./components/SportsInfoSection";
 import CalcioIntro from "./components/CalcioIntro";
+import CoachingTeamSection from "./components/CoachingTeamSection";
 
 
 export default function Calcio() {
@@ -20,7 +21,7 @@ export default function Calcio() {
       <CalcioIntro />
       <Chatbot /> 
       <WhatsAppWidget />
-      
+      <CoachingTeamSection  />
       <NewsletterSection />
       <Footer />
     </div>
