@@ -8,8 +8,8 @@ const ContactForm = () => {
       {/* Sezione Informazioni Contatto */}
       <motion.div 
         className="bg-white shadow-md rounded-lg p-6 space-y-6" 
-        initial={{ opacity: 0, x: -50 }} 
-        animate={{ opacity: 1, x: 0 }} 
+        initial={{ opacity: 0, y: 10 }} 
+        animate={{ opacity: 1, y: 0 }} 
         transition={{ duration: 0.5 }}
       >
         <h2 className="text-3xl font-bold text-black">PER INFO</h2>
@@ -45,8 +45,8 @@ const ContactForm = () => {
       {/* Sezione Form */}
       <motion.div 
         className="bg-white shadow-md rounded-lg p-6" 
-        initial={{ opacity: 0, x: 50 }} 
-        animate={{ opacity: 1, x: 0 }} 
+        initial={{ opacity: 0, y: 10 }} 
+        animate={{ opacity: 1, y: 0 }} 
         transition={{ duration: 0.5 }}
       >
         <h2 className="text-3xl font-bold mb-4 text-black">Invia un messaggio</h2>

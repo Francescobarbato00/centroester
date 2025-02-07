@@ -70,7 +70,7 @@ const blogPosts = [
   },
 ];
 
-// Nuove varianti: semplice fade-in senza spostamenti orizzontali
+// Varianti per il fade (senza spostamenti laterali)
 const variants = {
   enter: { opacity: 0 },
   center: { opacity: 1 },
@@ -120,9 +120,14 @@ const BlogSection = () => {
 
   // Ref per il container dei post
   const postsContainerRef = useRef(null);
+  // Flag per saltare lo scroll al primo render
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
-    // Su mobile (ad es. larghezza inferiore a 768px) ripristina lo scroll al top del container dei post
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     if (window.innerWidth < 768 && postsContainerRef.current) {
       postsContainerRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -133,7 +138,7 @@ const BlogSection = () => {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="w-full py-20 bg-gray-100"
+      className="w-full py-20 bg-white"
     >
       <div className="max-w-6xl mx-auto px-6 text-center">
         {/* Titolo e Sottotitolo */}

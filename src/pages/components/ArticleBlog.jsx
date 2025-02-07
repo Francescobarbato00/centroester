@@ -29,53 +29,48 @@ const articles = [
     preview:
       "Approfondimento sulle lesioni al ginocchio nel badminton, con consigli su prevenzione e recupero ottimale.",
   },
+  // Duplicati per mostrare la paginazione
   {
-    title: "Il potente smash: tecnica e allenamento per diventare un campione",
-    category: "Avanzato",
+    title: "Innovazione e Tecnologia nello Sport",
+    description:
+      "Scopri come la tecnologia sta rivoluzionando il mondo dello sport, dai wearable alle analisi dei dati, rendendo l'allenamento più efficace e personalizzato.",
+    category: "TECNOLOGIA",
+    date: "10 Novembre 2022",
     image: "/foto4.jpg",
-    date: "2022-08-20",
     preview:
-      "Tecniche avanzate per uno smash potente, con allenamenti specifici per raggiungere il massimo.",
+      "Scopri come la tecnologia sta rivoluzionando il mondo dello sport, dai wearable alle analisi dei dati, rendendo l'allenamento più efficace e personalizzato.",
   },
   {
-    title: "Scegli il miglior grip: consigli per una presa perfetta",
-    category: "Equipaggiamento",
+    title: "Nutrizione e Performance",
+    category: "NUTRIZIONE",
+    date: "15 Ottobre 2022",
     image: "/foto5.jpg",
-    date: "2022-12-01",
     preview:
-      "Guida pratica per scegliere il grip migliore, fondamentale per una presa perfetta della racchetta.",
+      "Una guida completa su come l'alimentazione influisce sulle prestazioni sportive, con consigli pratici per migliorare la tua dieta e raggiungere il massimo potenziale.",
   },
   {
-    title: "La forza mentale in campo: come superare le sfide",
-    category: "Psicologia",
+    title: "Mindfulness e Sport",
+    category: "BENESSERE",
+    date: "20 Settembre 2022",
     image: "/foto6.jpg",
-    date: "2022-10-30",
     preview:
-      "Strategie per rafforzare la forza mentale e affrontare le sfide in campo con determinazione.",
+      "Integrare la mindfulness nella tua routine sportiva può migliorare la concentrazione e ridurre lo stress. Leggi i consigli per trovare l'equilibrio perfetto tra mente e corpo.",
   },
   {
-    title: "Esempio articolo 7",
-    category: "Test",
-    image: "/foto3.jpg",
-    date: "2022-11-10",
+    title: "Mindfulness e Sport",
+    category: "BENESSERE",
+    date: "20 Settembre 2022",
+    image: "/foto6.jpg",
     preview:
-      "Un esempio di articolo per testare la paginazione e lo stile del blog, con informazioni utili e consigli pratici.",
+      "Integrare la mindfulness nella tua routine sportiva può migliorare la concentrazione e ridurre lo stress. Leggi i consigli per trovare l'equilibrio perfetto tra mente e corpo.",
   },
   {
-    title: "Esempio articolo 8",
-    category: "Test",
-    image: "/foto4.jpg",
-    date: "2022-11-11",
+    title: "Mindfulness e Sport",
+    category: "BENESSERE",
+    date: "20 Settembre 2022",
+    image: "/foto6.jpg",
     preview:
-      "Questo articolo illustra ulteriori tecniche e strategie per migliorare il gioco nel badminton.",
-  },
-  {
-    title: "Esempio articolo 9",
-    category: "Test",
-    image: "/foto5.jpg",
-    date: "2022-11-12",
-    preview:
-      "Scopri suggerimenti e trucchi per affinare le tue abilità e dominare il campo con sicurezza.",
+      "Integrare la mindfulness nella tua routine sportiva può migliorare la concentrazione e ridurre lo stress. Leggi i consigli per trovare l'equilibrio perfetto tra mente e corpo.",
   },
 ];
 
@@ -95,10 +90,16 @@ const ArticleBlogs = () => {
 
   // Ref per l'intestazione (titolo "Il nostro blog")
   const headerRef = useRef(null);
+  // Flag per saltare lo scroll al primo render
+  const isFirstRender = useRef(true);
 
-  // Al cambio pagina, scrolla fino al titolo "Il nostro blog"
+  // Al cambio pagina, scrolla fino al titolo "Il nostro blog" solo dopo il primo render
   useEffect(() => {
-    if (headerRef.current) {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (window.innerWidth < 768 && headerRef.current) {
       headerRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [currentPage]);
@@ -198,7 +199,7 @@ const ArticleBlogs = () => {
             className={`px-4 py-2 border rounded transition ${
               activeFilter === "all"
                 ? "bg-blue-600 text-white border-blue-600"
-                : "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+                : "bg-white text-gray-600"
             }`}
           >
             Tutte
@@ -208,7 +209,7 @@ const ArticleBlogs = () => {
             className={`px-4 py-2 border rounded transition ${
               activeFilter === "category"
                 ? "bg-blue-600 text-white border-blue-600"
-                : "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+                : "bg-white text-gray-600"
             }`}
           >
             Categoria
@@ -218,7 +219,7 @@ const ArticleBlogs = () => {
             className={`px-4 py-2 border rounded transition ${
               activeFilter === "date"
                 ? "bg-blue-600 text-white border-blue-600"
-                : "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+                : "bg-white text-gray-600"
             }`}
           >
             Data
@@ -228,7 +229,7 @@ const ArticleBlogs = () => {
             className={`px-4 py-2 border rounded transition ${
               activeFilter === "text"
                 ? "bg-blue-600 text-white border-blue-600"
-                : "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+                : "bg-white text-gray-600"
             }`}
           >
             Testo
