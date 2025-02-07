@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -118,6 +118,16 @@ const BlogSection = () => {
     }
   };
 
+  // Ref per il container dei post
+  const postsContainerRef = useRef(null);
+
+  useEffect(() => {
+    // Su mobile (ad es. larghezza inferiore a 768px) ripristina lo scroll al top del container dei post
+    if (window.innerWidth < 768 && postsContainerRef.current) {
+      postsContainerRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [currentPage]);
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -189,8 +199,8 @@ const BlogSection = () => {
           </button>
         </div>
 
-        {/* Carousel degli articoli */}
-        <div className="relative mt-10">
+        {/* Container dei post con ref */}
+        <div ref={postsContainerRef} className="relative mt-10">
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               key={currentPage}

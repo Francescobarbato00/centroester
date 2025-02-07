@@ -172,10 +172,10 @@ const TheaterScheduleSection = () => {
               objectFit="cover"
               className="w-full h-full"
             />
-            {/* Overlay: bianco su mobile, blu su md+ */}
-            <div className="absolute inset-0 bg-white md:bg-blue-600 opacity-70 group-hover:opacity-0 transition-opacity duration-300"></div>
-            {/* Contenuto della card */}
-            <div className="absolute bottom-0 left-0 p-6 z-10 text-black md:text-white">
+            {/* Overlay: ora blu per tutti i dispositivi */}
+            <div className="absolute inset-0 bg-blue-600 opacity-70 group-hover:opacity-0 transition-opacity duration-300"></div>
+            {/* Contenuto della card: testo bianco per contrastare il blu */}
+            <div className="absolute bottom-0 left-0 p-6 z-10 text-white">
               <h3 className="text-xl font-bold">{event.show}</h3>
               <p className="text-sm mt-1">{event.performer}</p>
               {event.date && <p className="text-sm mt-1">{event.date}</p>}

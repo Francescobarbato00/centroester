@@ -1,4 +1,5 @@
 import TopHeader from "./components/TopHeader";
+import HeaderMobile from "./components/HeaderMobile";
 import Footer from "./components/Footer";
 import ScrollableHeader from "./components/ScrollableHeader";
 import Chatbot from "./components/Chatbot";
@@ -9,12 +10,20 @@ import ArticleBlog from "./components/ArticleBlog";
 
 export default function News() {
   return (
-    <div className="relative pt-[100px]">
-      {/* 40px per il TopHeader + circa 60px per lo ScrollableHeader in stato iniziale */}
-      <TopHeader />
-      <ScrollableHeader />
+    <div className="relative pt-[60px] md:pt-[100px]">
+      {/* Header per desktop */}
+      <div className="hidden md:block">
+        <TopHeader />
+        <ScrollableHeader />
+      </div>
+
+      {/* Header mobile */}
+      <div className="md:hidden">
+        <HeaderMobile />
+      </div>
+
       <BlogIntro />
-      <Chatbot /> 
+      <Chatbot />
       <WhatsAppWidget />
       <ArticleBlog />
       <NewsletterSection />

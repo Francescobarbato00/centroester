@@ -3,7 +3,7 @@ import Image from "next/image";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Array degli articoli hardcodati, ognuno con una preview testuale
+// Array degli articoli hardcodati
 const articles = [
   {
     title: "Riscaldamento nel badminton: guida completa per evitare infortuni",
@@ -79,35 +79,21 @@ const articles = [
   },
 ];
 
-// Varianti per l'animazione di transizione tra pagine
+// Varianti per il fade (senza spostamenti orizzontali)
 const pageVariants = {
-  initial: (direction) => ({
-    x: direction > 0 ? 300 : -300,
-    opacity: 0,
-  }),
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: { duration: 0.5 },
-  },
-  exit: (direction) => ({
-    x: direction > 0 ? -300 : 300,
-    opacity: 0,
-    transition: { duration: 0.5 },
-  }),
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0.5 } },
+  exit: { opacity: 0, transition: { duration: 0.5 } },
 };
 
 const ArticleBlogs = () => {
-  // Stati per i filtri
   const [activeFilter, setActiveFilter] = useState("all");
   const [filterValue, setFilterValue] = useState("");
-
-  // Stati per la paginazione e la direzione dell'animazione
   const [currentPage, setCurrentPage] = useState(0);
   const [direction, setDirection] = useState(0);
   const itemsPerPage = 6;
 
-  // Riferimento all'header per lo scroll (titolo "Il nostro blog")
+  // Ref per l'intestazione (titolo "Il nostro blog")
   const headerRef = useRef(null);
 
   // Al cambio pagina, scrolla fino al titolo "Il nostro blog"
@@ -117,14 +103,12 @@ const ArticleBlogs = () => {
     }
   }, [currentPage]);
 
-  // Cambio filtro: resettiamo il valore e la pagina corrente
   const handleFilterChange = (filterType) => {
     setActiveFilter(filterType);
     setFilterValue("");
     setCurrentPage(0);
   };
 
-  // Filtraggio degli articoli in base al filtro attivo e al valore inserito
   const filteredArticles = articles.filter((article) => {
     if (activeFilter === "all") return true;
     if (activeFilter === "category") {
@@ -142,11 +126,10 @@ const ArticleBlogs = () => {
     return true;
   });
 
-  // Se non ci sono articoli dopo il filtraggio, mostra un messaggio
   if (filteredArticles.length === 0) {
     return (
       <motion.section
-        className="container mx-auto px-6 py-12 text-center"
+        className="container mx-auto px-6 py-12 text-center bg-white"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -156,14 +139,12 @@ const ArticleBlogs = () => {
     );
   }
 
-  // Calcola il numero totale di pagine e seleziona gli articoli della pagina corrente
   const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
   const displayedArticles = filteredArticles.slice(
     currentPage * itemsPerPage,
     (currentPage + 1) * itemsPerPage
   );
 
-  // Se la pagina corrente ha meno di 6 articoli, "riempi" gli spazi vuoti con card placeholder
   let displayedArticlesFilled = [...displayedArticles];
   if (displayedArticlesFilled.length < itemsPerPage) {
     const fillCount = itemsPerPage - displayedArticlesFilled.length;
@@ -171,20 +152,18 @@ const ArticleBlogs = () => {
       displayedArticlesFilled.push({
         title: "Articolo in arrivo",
         category: "In arrivo",
-        image: articles[i % articles.length].image, // Usa un'immagine esistente ciclicamente
+        image: articles[i % articles.length].image,
         date: "",
         preview: "Articolo in arrivo. Rimani aggiornato per ulteriori dettagli.",
       });
     }
   }
 
-  // Funzione per troncare il testo a una lunghezza massima
   const truncateText = (text, maxLength) => {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + "...";
   };
 
-  // Gestione delle frecce per la paginazione
   const handlePrev = () => {
     if (currentPage > 0) {
       setDirection(-1);
@@ -201,14 +180,13 @@ const ArticleBlogs = () => {
 
   return (
     <motion.section
-      className="container mx-auto px-6 py-12"
+      className="container mx-auto px-6 py-12 bg-white"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Intestazione e menu dei filtri */}
       <header ref={headerRef} className="mb-8">
-        <h2 className="text-3xl font-bold text-blue-600 text-center mb-2">
+        <h2 className="text-3xl font-bold text-black text-center mb-2">
           Il nostro blog
         </h2>
         <p className="text-center text-gray-600 mb-4">
@@ -256,7 +234,6 @@ const ArticleBlogs = () => {
             Testo
           </button>
         </nav>
-
         {activeFilter === "category" && (
           <div className="mt-4 flex justify-center">
             <select
@@ -296,11 +273,9 @@ const ArticleBlogs = () => {
         )}
       </header>
 
-      {/* Griglia degli articoli con animazione */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentPage}
-          custom={direction}
           variants={pageVariants}
           initial="initial"
           animate="animate"
@@ -321,7 +296,7 @@ const ArticleBlogs = () => {
                 )}
               </div>
               <div className="p-4">
-                <h3 className="text-lg font-semibold">{title}</h3>
+                <h3 className="text-lg font-semibold text-black">{title}</h3>
                 <p className="text-gray-600 text-sm mt-2">{truncateText(preview, 100)}</p>
                 {date ? (
                   <time dateTime={date} className="text-gray-400 text-xs mt-3 block">
@@ -341,7 +316,6 @@ const ArticleBlogs = () => {
         </motion.div>
       </AnimatePresence>
 
-      {/* Paginazione con frecce e indicatori */}
       <div className="flex items-center justify-center mt-8 space-x-3">
         <button onClick={handlePrev} className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition">
           <FaArrowLeft className="text-blue-600" />
