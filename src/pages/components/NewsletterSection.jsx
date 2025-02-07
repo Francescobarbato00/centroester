@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const NewsletterSection = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +11,13 @@ const NewsletterSection = () => {
   };
 
   return (
-    <section className="w-full py-20 bg-gradient-to-r from-blue-500 to-blue-700">
+    <motion.section
+      className="w-full py-20 bg-gradient-to-r from-blue-500 to-blue-700 overflow-hidden"
+      initial={{ x: "-100%", opacity: 0 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-start text-white">
         {/* Sezione testuale a sinistra */}
         <div className="w-full md:w-8/12 mb-8 md:mb-0">
@@ -42,7 +49,7 @@ const NewsletterSection = () => {
           </form>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

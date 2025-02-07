@@ -14,8 +14,13 @@ const HeroBanner = () => {
       />
       <div className="absolute inset-0 bg-blue-600 opacity-60"></div>
 
-      {/* Contenuto della sezione */}
-      <div className="relative z-10 max-w-3xl mx-auto px-6 flex flex-col items-center">
+      {/* Contenuto della sezione con animazione del testo */}
+      <motion.div
+        className="relative z-10 max-w-3xl mx-auto px-6 flex flex-col items-center"
+        initial={{ opacity: 0, y: 50 }}   // Inizia con trasparenza e posizionato 50px in basso
+        animate={{ opacity: 1, y: 0 }}      // Anima fino a opacità 1 e posizione originale
+        transition={{ duration: 0.8, ease: "easeOut" }} // Durata e easing della transizione
+      >
         <h1 className="text-4xl md:text-5xl font-bold leading-tight">
           Gioca a Sport! Migliora il tuo corpo e la tua mente.
         </h1>
@@ -31,7 +36,7 @@ const HeroBanner = () => {
         >
           <Play size={32} />
         </motion.button>
-      </div>
+      </motion.div>
     </section>
   );
 };

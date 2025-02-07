@@ -52,6 +52,24 @@ const blogPosts = [
     date: "20 Settembre 2022",
     image: "/foto6.jpg",
   },
+  {
+    title: "Mindfulness e Sport",
+    description:
+      "Integrare la mindfulness nella tua routine sportiva può migliorare la concentrazione e ridurre lo stress. Leggi i consigli per trovare l'equilibrio perfetto tra mente e corpo.",
+    category: "BENESSERE",
+    date: "20 Settembre 2022",
+    image: "/foto6.jpg",
+  },
+   {
+    title: "Mindfulness e Sport",
+    description:
+      "Integrare la mindfulness nella tua routine sportiva può migliorare la concentrazione e ridurre lo stress. Leggi i consigli per trovare l'equilibrio perfetto tra mente e corpo.",
+    category: "BENESSERE",
+    date: "20 Settembre 2022",
+    image: "/foto6.jpg",
+  },
+
+
 ];
 
 const variants = {

@@ -11,6 +11,7 @@ import ScrollableHeader from "./components/ScrollableHeader";
 import BlogSection from "./components/BlogSection";
 import Chatbot from "./components/Chatbot";
 import WhatsAppWidget from "./components/WhatsAppWidget";
+import SupportSection from "./components/SupportSection";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
       <SportActivities />
       <LogosSection />
       <BlogSection />
+      <SupportSection />
       <NewsletterSection /> 
       <Chatbot /> 
       <WhatsAppWidget />
