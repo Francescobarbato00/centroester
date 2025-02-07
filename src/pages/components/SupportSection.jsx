@@ -15,8 +15,8 @@ const SupportSection = () => {
   return (
     <motion.section
       className="container mx-auto px-6 py-12 text-center bg-white"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.8 }}
     >
@@ -28,8 +28,8 @@ const SupportSection = () => {
         {/* Card Supporto Clienti */}
         <motion.div
           className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center"
-          initial={{ opacity: 0, x: isMobile ? 0 : -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <MessageSquare size={40} className="text-blue-600" />
@@ -41,12 +41,11 @@ const SupportSection = () => {
             Chatta ora
           </button>
         </motion.div>
-
         {/* Card Supporto Ticket */}
         <motion.div
           className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center"
-          initial={{ opacity: 0, x: isMobile ? 0 : 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <Mail size={40} className="text-blue-600" />
@@ -58,12 +57,11 @@ const SupportSection = () => {
             Invia Ticket
           </button>
         </motion.div>
-
         {/* Card Forum della Community */}
         <motion.div
           className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center"
-          initial={{ opacity: 0, x: isMobile ? 0 : -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <Users size={40} className="text-blue-600" />
