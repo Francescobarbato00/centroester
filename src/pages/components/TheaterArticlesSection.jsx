@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-// Array degli eventi (manteniamo i percorsi delle immagini originali)
 const events = [
   {
     id: 1,
@@ -137,20 +136,20 @@ const events = [
 const TheaterScheduleSection = () => {
   return (
     <motion.section
-      className="container mx-auto px-6 py-12"
-      initial={{ opacity: 0, y: 50 }}
+      className="container mx-auto px-6 py-12 bg-white"
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
       {/* Intestazione della sezione */}
       <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold">
+        <h2 className="text-4xl md:text-5xl font-bold text-black">
           Teatro Pompeo Centanni - Centro Ester
         </h2>
-        <p className="text-lg md:text-xl font-semibold mt-2">
+        <p className="text-lg md:text-xl font-semibold mt-2 text-black">
           Stagione Teatrale 2024/2025
         </p>
-        <p className="mt-1 text-sm italic">
+        <p className="mt-1 text-sm italic text-black">
           Direzione Artistica: Francesco De Cenzo
         </p>
       </div>
@@ -173,10 +172,10 @@ const TheaterScheduleSection = () => {
               objectFit="cover"
               className="w-full h-full"
             />
-            {/* Overlay blu che svanisce al passaggio del mouse */}
-            <div className="absolute inset-0 bg-blue-600 opacity-70 group-hover:opacity-0 transition-opacity duration-300"></div>
+            {/* Overlay: bianco su mobile, blu su md+ */}
+            <div className="absolute inset-0 bg-white md:bg-blue-600 opacity-70 group-hover:opacity-0 transition-opacity duration-300"></div>
             {/* Contenuto della card */}
-            <div className="absolute bottom-0 left-0 p-6 z-10 text-white">
+            <div className="absolute bottom-0 left-0 p-6 z-10 text-black md:text-white">
               <h3 className="text-xl font-bold">{event.show}</h3>
               <p className="text-sm mt-1">{event.performer}</p>
               {event.date && <p className="text-sm mt-1">{event.date}</p>}
@@ -192,15 +191,13 @@ const TheaterScheduleSection = () => {
       <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Box di Assistenza Clienti */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="p-8 rounded-lg shadow-xl flex flex-col justify-center bg-blue-600"
+          className="p-8 rounded-lg shadow-xl flex flex-col justify-center bg-white md:bg-blue-600 text-black md:text-white"
         >
-          <h3 className="text-2xl font-bold mb-4 text-white">
-            Assistenza Clienti
-          </h3>
-          <p className="text-lg mb-6 text-white">
+          <h3 className="text-2xl font-bold mb-4">Assistenza Clienti</h3>
+          <p className="text-lg mb-6">
             Per ogni dubbio o richiesta di supporto, contattaci su WhatsApp. Siamo qui per aiutarti!
           </p>
           <a
@@ -223,8 +220,8 @@ const TheaterScheduleSection = () => {
 
         {/* Box della Locandina Ufficiale */}
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="p-8 rounded-lg shadow-xl flex flex-col items-center bg-white"
         >
@@ -249,14 +246,14 @@ const TheaterScheduleSection = () => {
       {/* Sezione Abbonamenti */}
       <div className="mt-12 text-center">
         <hr className="border-gray-300 mb-4" />
-        <h3 className="text-2xl font-bold">Abbonamenti</h3>
-        <p className="mt-2 text-gray-700">
+        <h3 className="text-2xl font-bold text-black">Abbonamenti</h3>
+        <p className="mt-2 text-black">
           10 Spettacoli + 2 in omaggio per gli abbonati
         </p>
-        <p className="mt-2 text-gray-700">
+        <p className="mt-2 text-black">
           Teatro Pompeo Centanni - Via Giambattista Vela, 91 - Napoli
         </p>
-        <p className="mt-2 text-gray-700">
+        <p className="mt-2 text-black">
           Info e prenotazioni: 388.403.4074 | 081.255.23.15
         </p>
       </div>

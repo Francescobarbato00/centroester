@@ -3,9 +3,9 @@ import Image from "next/image";
 
 const TeatroIntro = () => {
   return (
-    <section className="relative w-full bg-gradient-to-r from-red-600 to-orange-500 py-20 text-center text-white">
+    <section className="relative w-full bg-gradient-to-r from-red-600 to-orange-500 py-12 md:py-20 text-center text-white">
       {/* Immagine di sfondo con overlay */}
-      <div className="absolute inset-0 w-full h-full">
+      <div className="absolute inset-0">
         <Image
           src="/teatro-bg.jpg" // Sostituisci con il percorso corretto dell'immagine per il teatro
           alt="Background Teatro"
@@ -16,11 +16,11 @@ const TeatroIntro = () => {
       </div>
       
       {/* Contenuto Testuale */}
-      <div className="relative z-10">
-        <h1 className="text-4xl md:text-5xl font-extrabold drop-shadow-lg">
+      <div className="relative z-10 px-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold drop-shadow-lg">
           Teatro
         </h1>
-        <p className="text-lg md:text-xl font-semibold mt-2 drop-shadow-md">
+        <p className="mt-2 text-base sm:text-lg md:text-xl font-semibold drop-shadow-md">
           Spettacoli & Recensioni dal Vivo
         </p>
       </div>

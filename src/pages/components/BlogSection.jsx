@@ -70,16 +70,11 @@ const blogPosts = [
   },
 ];
 
+// Nuove varianti: semplice fade-in senza spostamenti orizzontali
 const variants = {
-  enter: (direction) => ({
-    x: direction > 0 ? 300 : -300,
-    opacity: 0,
-  }),
-  center: { x: 0, opacity: 1 },
-  exit: (direction) => ({
-    x: direction > 0 ? -300 : 300,
-    opacity: 0,
-  }),
+  enter: { opacity: 0 },
+  center: { opacity: 1 },
+  exit: { opacity: 0 },
 };
 
 const BlogSection = () => {
